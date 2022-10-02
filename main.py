@@ -2,7 +2,7 @@ from test4 import rosenbrock
 from pylab import *
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
-
+#main文件调用其他文件里到函数，画二维rosenbrock函数的图像
 def main():
     fig = figure()
     ax = Axes3D(fig)
