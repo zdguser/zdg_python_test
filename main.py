@@ -1,4 +1,4 @@
-from test4 import rosenbrock
+from rosen import rosenbrock
 from pylab import *
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
