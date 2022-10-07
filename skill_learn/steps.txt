@@ -1,0 +1,24 @@
+1. 登录天河，在login_tianhe.md。
+2. 把cases_XCdCl.dat拷贝到数据文件夹：
+scp -i ~/key2.id  sysu_gxy_rbc_1@172.16.22.11:/WORK/sysu_gxy_rbc_1/hitsz-new/FFDOPTv14_ei/cases_XCdCl.dat .
+3. 运行python -u main.py >> output.dat &
+   查看运行进度 tail -f output.dat
+4. scp -i ~/key2.id Xdata_ei.dat sysu_gxy_rbc_1@172.16.22.11:/WORK/sysu_gxy_rbc_1/hitsz-new/FFDOPTv14_ei/Xdata.dat 
+scp -i ~/key2.id Xdata_val.dat sysu_gxy_rbc_1@172.16.22.11:/WORK/sysu_gxy_rbc_1/hitsz-new/FFDOPTv14_val/Xdata.dat 
+5. 登录天河，
+module load CGNS/3.2.1-gcc
+module load Python/3.6.10
+module load gcc/4.8.5
+yhbatch runFFD.sh
+yhq 查询有没有执行完
+6. 在网页提交作业。
+7. （1）把算完的数据进行分析
+（2）登录天河
+module load Python/3.6.10
+在数据文件夹下执行python writeCasesCdCl_add.py
+
+module load Python/3.6.10
+python PlotCd.py
+把输出的结果记录到专门的记事本record.txt
+
+把val和ei的数据合并到一起，执行第二步。

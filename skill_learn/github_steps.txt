@@ -1,0 +1,48 @@
+
+初次连接时：
+git init文件夹
+生成密钥
+ssh-keygen -t rsa -C "youremail@example.com" #邮箱是在github注册的邮箱
+一路回车
+主目录下的 .ssh文件夹， 打开id_rsa.pub,复制里面到key
+
+然后在github的setting里找到ssh and GPG keys, 点击new ssh key将复制到key粘贴，自己命名title，然后成功add ssh key
+ssh -T git@github.com测试是否连接上github
+
+如果要保证永久连接，不掉线（若掉线只能生成新到密钥重新连接）
+******永久添加
+1.打开git的安装目录，找到该目录下的ssh_config文件
+在该文件到底部输入 IdentityFile path
+如：IdentityFile ~/.ssh/testssh        path表示 ssh 私钥的路径地址
+测试： ssh -T git@github.com
+
+
+
+*******************************************************************
+1.新建一个文件夹 mkdir newfile
+2.初始化文件夹 git init
+3.git add file跟踪需要上传到文件
+如：git add readme.md
+4.提交文件到本地库
+如：git commit -m '*******具体信息'
+5.测试是否与github连接
+ssh -T git@github.com
+6.将本地库文件push到github远程库
+
+***第一次提交时，需要多写这行（不是第一次提交，只写第二行即可）
+git remote add origin git@github.com:zdguser/zdg_py_test.git    .com后面这些是repo名
+
+
+git push -u origin master    意为origin服务器的master分支
+**************************************************************************
+lazygit简单操作： x是查看各种操作命令
+esc  以及 q  返回
+c 是 commit 
+P 是 push
+p 是 pull
+方向箭头是移动
+空格 和enter是确定
+****************************************************************
+提取远程仓库，相当于远程库更新到本地库
+git fetch origin
+git merge origin/master
