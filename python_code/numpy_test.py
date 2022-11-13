@@ -17,7 +17,7 @@ import numpy as np
 
 #######创建数组................................................................
 # x =np.arange(5)
-# x = np.arange(1,10,0.5,dtype=loat)
+# x = np.arange(1,10,0.5,dtype=float)
 # print(x)
 
 # y = np.linspace(1,10,10)
