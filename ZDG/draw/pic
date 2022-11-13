@@ -1,0 +1,93 @@
+from pylab import *
+import numpy as np
+import matplotlib.pyplot as plt
+
+file = '/home/qc2109/ZDG/draw/cases_XCdCl.dat'
+orgfile = '/home/qc2109/ZDG/draw/org_v2'
+
+f = open(file,'r')
+org = open(orgfile,'r')
+
+orglist = []
+orglist = org.readlines()
+orglist = orglist[0].strip('\n')
+orglist = orglist.split(',')
+
+# print(orglist)
+# print(len(orglist))
+# print(type(orglist))
+
+yname = ['b1','b2','b3','b4','b5','b6',
+'Cd-pressure-ALL','Cd-pressure-HEAD-UP','Cd-pressure-HEAD-NOSE','Cd-pressure-HEAD-DOWN','Cd-pressure-HEAD-REST',
+'Cd-pressure-MIDDLE','Cd-pressure-TAIL-UP','Cd-pressure-TAIL-NOSE','Cd-pressure-TAIL-DOWN','Cd-pressure-TAIL-REST',
+'Cd-Shear-ALL','Cd-Shear-HEAD-UP','Cd-Shear-HEAD-NOSE','Cd-Shear-HEAD-DOWN','Cd-Shear-HEAD-REST','Cd-Shear-MIDDLE',
+'Cd-Shear-TAIL-UP','Cd-Shear-TAIL-NOSE','Cd-Shear-TAIL-DOWN','Cd-Shear-TAIL-REST',
+'Cd-Total','Cl-Tail',]
+
+#rint(len(yname))
+
+n = int(input('please input the number of point: (int number)'))
+nlist = []
+for i in range(n):
+    a = f.readline()
+    nlist.append(a)
+
+str1,str2 = '',''
+for k in range(1,29):
+    
+    get_org = []
+    get_opt = []
+    #sum = 0.0
+    for i in range(12):
+        alist = nlist[i].strip('\n')
+        alist = alist.split(',')
+
+        #print(len(alist))
+    
+        get_org.append(float(alist[k]))
+        #sum += float(alist[k])
+    
+    for j in range(12,24):
+        blist = nlist[j].strip('\n')
+        blist = blist.split(',')
+
+        #print(len(alist))
+    
+        get_opt.append(float(blist[k]))
+        
+    
+    get_org_array = np.array(get_org)
+    get_opt_array = np.array(get_opt)
+    x1 = np.linspace(1,12,12,endpoint=True,dtype=int)
+    x2 = np.linspace(13,24,12,endpoint=True,dtype=int)
+
+    # print(len(x1))
+    # print(len(x2))
+    # print(len(get_org_array))
+    # print(len(get_opt_array))
+
+    #avg = sum / n
+
+    #plot(x,avg,color='black')
+    fig = figure()
+    figure(figsize=(10,6),dpi=80)
+    scatter(x1,get_org_array,color='blue',label='Initial')
+    scatter(x2,get_opt_array,color='red',label='Optimal soluion')
+    legend(loc='upper right')
+
+    m = float(orglist[k])
+    plot([0,25],[m,m],color='black')
+    #show()
+    
+    str1 = yname[k-1]
+    xlabel('iteration')
+    ylabel(str1)
+    
+    str2 = 'fig' + str(k) + '.png'
+    savefig(str2)
+
+    #savefig('Cd.png')
+    #show()
+    
+
+f.close()
